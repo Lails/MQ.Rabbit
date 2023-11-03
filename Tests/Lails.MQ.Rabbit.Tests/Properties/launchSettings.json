@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Lails.MQ.Rabbit.Tests": {
+      "commandName": "Project",
+      "launchUrl": "https://localhost:5001/swagger/index.html",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
