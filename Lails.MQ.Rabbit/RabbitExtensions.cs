@@ -5,7 +5,7 @@ using MassTransit.Scheduling;
 
 namespace Lails.MQ.Rabbit
 {
-	public static class BusExtensions
+	public static class RabbitExtensions
 	{
 		public static async Task<Guid> SendScheduledMessage<TMessage>(this IBus bus, TMessage message, DateTime scheduledTime)
 		{

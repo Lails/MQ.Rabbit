@@ -10,6 +10,12 @@ namespace Lails.MQ.Rabbit
     {
         private static bool _useQuartz;
 
+        /// <summary>
+        /// Конфигурация с подключением к rabbit и quartz
+        /// </summary>
+        /// <param name="cfg"></param>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
         public static IRabbitMqBusFactoryConfigurator AddDataBusConfiguration(
             this IRabbitMqBusFactoryConfigurator cfg,
             IConfiguration configuration)
@@ -34,13 +40,24 @@ namespace Lails.MQ.Rabbit
             return cfg;
         }
 
+        /// <summary>
+        /// Регистрация Consumert<T> с возможностью повторения
+        /// </summary>
+        /// <typeparam name="TConsumer"></typeparam>
+        /// <typeparam name="TContract"></typeparam>
+        /// <param name="cfg"></param>
+        /// <param name="registration"></param>
+        /// <param name="retryCount">Количество повторений</param>
+        /// <param name="intervalMin">Интервал между повторениями </param>
+        /// <param name="concurrencyLimit">Количество одновременных эзкемпляров</param>
+        /// <returns></returns>
         public static IRabbitMqBusFactoryConfigurator RegisterConsumerWithRetry<TConsumer, TContract>(
             this IRabbitMqBusFactoryConfigurator cfg,
             IRegistrationContext registration,
             int retryCount,
             int intervalMin,
             int concurrencyLimit = 0)
-            where TConsumer : ConsumerBase<TContract>
+            where TConsumer : BaseConsumer<TContract>
             where TContract : class
         {
             var queueName = $"{typeof(TConsumer).FullName}_{typeof(TContract)}";
@@ -84,6 +101,12 @@ namespace Lails.MQ.Rabbit
             return cfg;
         }
 
+
+        /// <summary>
+        /// Регистрация IRabbitPublisher для публикации сообщений
+        /// </summary>
+        /// <param name="serviceCollection"></param>
+        /// <returns></returns>
         public static IServiceCollection RegisterRabbitPublisher(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddSingleton<IRabbitPublisher, RabbitPublisher>();

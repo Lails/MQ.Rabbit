@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Lails.MQ.Rabbit.Tests.Consumers
 {
-    public class AddPointConsumer : ConsumerBase<IAddPointsEvent>
+    public class AddPointConsumer : BaseConsumer<IAddPointsEvent>
     {
         readonly LailsMQTestDbContext _db;
         public AddPointConsumer(LailsMQTestDbContext db)
         {
             _db = db;
         }
-        protected override async Task ConsumeImpl(ConsumeContext<IAddPointsEvent> context)
+        protected override async Task ConsumeImplementation(ConsumeContext<IAddPointsEvent> context)
         {
             var currentCount = 0;
             var points = new List<Point>();
