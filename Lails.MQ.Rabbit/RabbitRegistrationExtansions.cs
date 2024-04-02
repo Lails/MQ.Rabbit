@@ -1,8 +1,10 @@
-﻿using MassTransit;
+﻿using Lails.MQ.Rabbit.Consumer;
+using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Lails.MQ.Rabbit.Consumer;
 using System;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Lails.MQ.Rabbit
 {
@@ -22,6 +24,10 @@ namespace Lails.MQ.Rabbit
         {
             var userName = Environment.GetEnvironmentVariable("RABBITMQ_USERNAME") ?? configuration["RABBITMQ_USERNAME"];
             var password = Environment.GetEnvironmentVariable("RABBITMQ_PASSWORD") ?? configuration["RABBITMQ_PASSWORD"];
+            var certitifactePath = Environment.GetEnvironmentVariable("CERTIFICATE_PFX_PATH") ?? configuration["CERTIFICATE_PFX_PATH"];
+            var certitifactePassword = Environment.GetEnvironmentVariable("CERTIFICATE_PFX_PASSWORD") ?? configuration["CERTIFICATE_PFX_PASSWORD"];
+            var domainName = Environment.GetEnvironmentVariable("Domain:Base") ?? configuration["Domain:Base"];
+
             var hostUrl = configuration["RABBITMQ_HOSTURL"];
             var quartzQueueName = configuration["RABBITMQ_QUARTZ_QUEUE_NAME"];
             _useQuartz = string.IsNullOrEmpty(quartzQueueName) == false;
@@ -30,7 +36,26 @@ namespace Lails.MQ.Rabbit
             {
                 h.Username(userName);
                 h.Password(password);
+                //try user certificate
+                if (!string.IsNullOrWhiteSpace(certitifactePath)
+                    && !string.IsNullOrWhiteSpace(certitifactePassword)
+                    && !string.IsNullOrWhiteSpace(domainName))
+                {
+                    h.UseSsl(h =>
+                    {
+                        h.ServerName = domainName;
+                        h.Protocol = System.Security.Authentication.SslProtocols.Tls12;
+                        var pfxData = File.ReadAllBytes(certitifactePath);
+                        var certitifacte = new X509Certificate2(pfxData, certitifactePassword, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.Exportable);
+                        h.Certificate = certitifacte;
+                    });
+                }
+                else
+                {
+                    Console.WriteLine("SSL Certificate not used");
+                }
             });
+
 
             if (_useQuartz)
             {
@@ -41,14 +66,14 @@ namespace Lails.MQ.Rabbit
         }
 
         /// <summary>
-        /// Регистрация Consumert<T> с возможностью повторения
+        /// Регистрация Consumer<T> с возможностью переотправки
         /// </summary>
         /// <typeparam name="TConsumer"></typeparam>
         /// <typeparam name="TContract"></typeparam>
         /// <param name="cfg"></param>
         /// <param name="registration"></param>
-        /// <param name="retryCount">Количество повторений</param>
-        /// <param name="intervalMin">Интервал между повторениями </param>
+        /// <param name="retryCount">Количество переотправок при ошибке</param>
+        /// <param name="intervalMin">Интервал между переотправками </param>
         /// <param name="concurrencyLimit">Количество одновременных эзкемпляров</param>
         /// <returns></returns>
         public static IRabbitMqBusFactoryConfigurator RegisterConsumerWithRetry<TConsumer, TContract>(
