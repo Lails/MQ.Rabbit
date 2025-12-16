@@ -414,8 +414,6 @@ await publisher.PublishAsync(message); // Ничего не произойдет
 
 Пример логов:
 ```
-[DEBUG] Starting publishing the event MyMessage via publisher RabbitPublisher
-[DEBUG] Ending publishing the event MyMessage via publisher RabbitPublisher
 [ERROR] An error occurred while publishing the event via publisher RabbitPublisher. Event: {...}, Name: MyMessage
 ```
 
