@@ -6,25 +6,24 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
 
-namespace Lails.MQ.Rabbit.Tests
+namespace Lails.MQ.Rabbit.Tests;
+
+public class Program
 {
-	public class Program
-	{
-		public static void Main(string[] args)
-		{
-			var configuration = new ConfigurationBuilder()
-				.SetBasePath(Directory.GetCurrentDirectory())
-				.AddJsonFile("appsettings.json", false, true)
-				.AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", true)
-				.AddEnvironmentVariables()
-				.AddCommandLine(args)
-				.Build();
+    public static void Main(string[] args)
+    {
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", false, true)
+            .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", true)
+            .AddEnvironmentVariables()
+            .AddCommandLine(args)
+            .Build();
 
-			CreateWebHostBuilder(args).Build().Run();
-		}
+        CreateWebHostBuilder(args).Build().Run();
+    }
 
-		public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-			WebHost.CreateDefaultBuilder(args)
-				.UseStartup<Startup>();
-	}
+    public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        WebHost.CreateDefaultBuilder(args)
+            .UseStartup<Startup>();
 }

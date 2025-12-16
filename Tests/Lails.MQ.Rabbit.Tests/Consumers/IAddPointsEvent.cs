@@ -1,7 +1,6 @@
-﻿namespace Lails.MQ.Rabbit.Tests.Consumers
+﻿namespace Lails.MQ.Rabbit.Tests.Consumers;
+
+public interface IAddPointsEvent
 {
-    public interface IAddPointsEvent
-    {
-        int Count { get; set; }
-    }
+    int Count { get; set; }
 }

@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4E0A9709
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lails.MQ.Rabbit.Tests", "Tests\Lails.MQ.Rabbit.Tests\Lails.MQ.Rabbit.Tests.csproj", "{00A24D94-0362-4FB4-B65C-A2A26BBE5F20}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lails.MQ.Rabbit.UnitTests", "Tests\Lails.MQ.Rabbit.UnitTests\Lails.MQ.Rabbit.UnitTests.csproj", "{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,12 +60,31 @@ Global
 		{00A24D94-0362-4FB4-B65C-A2A26BBE5F20}.Test|x64.Build.0 = Test|Any CPU
 		{00A24D94-0362-4FB4-B65C-A2A26BBE5F20}.Test|x86.ActiveCfg = Test|Any CPU
 		{00A24D94-0362-4FB4-B65C-A2A26BBE5F20}.Test|x86.Build.0 = Test|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Debug|x64.Build.0 = Debug|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Debug|x86.Build.0 = Debug|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Release|x64.ActiveCfg = Release|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Release|x64.Build.0 = Release|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Release|x86.ActiveCfg = Release|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Release|x86.Build.0 = Release|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Test|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Test|Any CPU.Build.0 = Debug|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Test|x64.ActiveCfg = Debug|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Test|x64.Build.0 = Debug|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Test|x86.ActiveCfg = Debug|Any CPU
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70}.Test|x86.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{00A24D94-0362-4FB4-B65C-A2A26BBE5F20} = {4E0A9709-4EF8-4565-B561-6026E8F76EC3}
+		{2F41F6A7-2D30-49B5-8F22-645D8ADFFC70} = {4E0A9709-4EF8-4565-B561-6026E8F76EC3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39FA5F63-83D2-4B61-B1EA-75FD183E018E}

@@ -1,25 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<Configurations>Debug;Release;Test</Configurations>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Configurations>Debug;Release;Test</Configurations>
 
-		<Version>1.0.5</Version>
-		<IncludeSymbols>true</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<!--<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>-->
-		<Deterministic>true</Deterministic>
+        <Version>8.0.0</Version>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <!--<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>-->
+        <Deterministic>true</Deterministic>
 
-	</PropertyGroup>
+        <!-- Генерация XML-документации и включение в NuGet пакет -->
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <!-- XML-файл автоматически включается в NuGet пакет при GenerateDocumentationFile=true -->
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="MassTransit" Version="8.1.1" />
-		<PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.3.1" />
-		<PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.1.1" />
-		<PackageReference Include="MassTransit.RabbitMQ" Version="8.1.1" />
-		<PackageReference Include="Serilog" Version="3.0.1" />
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
-	</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="MassTransit" Version="8.4.1" />
+        <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.3.1" />
+        <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.4.1" />
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.4.1" />
+        <PackageReference Include="Serilog" Version="3.0.1" />
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.1" />
+    </ItemGroup>
 
 
 </Project>

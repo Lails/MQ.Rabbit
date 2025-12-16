@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Lails.MQ.Rabbit.Tests.Model;
 
-namespace Lails.MQ.Rabbit.Tests
-{
+namespace Lails.MQ.Rabbit.Tests;
+
 	public class LailsMQTestDbContext : DbContext
 	{
 		public LailsMQTestDbContext(DbContextOptions options) : base(options) { }
@@ -18,4 +18,3 @@ namespace Lails.MQ.Rabbit.Tests
 
 		}
 	}
-}

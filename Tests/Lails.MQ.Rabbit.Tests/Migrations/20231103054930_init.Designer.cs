@@ -9,44 +9,43 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Lails.MQ.Rabbit.Tests.Migrations
+namespace Lails.MQ.Rabbit.Tests.Migrations;
+
+[DbContext(typeof(LailsMQTestDbContext))]
+[Migration("20231103054930_init")]
+partial class init
 {
-    [DbContext(typeof(LailsMQTestDbContext))]
-    [Migration("20231103054930_init")]
-    partial class init
+    /// <inheritdoc />
+    protected override void BuildTargetModel(ModelBuilder modelBuilder)
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.13")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+        modelBuilder
+            .HasAnnotation("ProductVersion", "7.0.13")
+            .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+        NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Lails.MQ.Rabbit.Tests.Model.Point", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+        modelBuilder.Entity("Lails.MQ.Rabbit.Tests.Model.Point", b =>
+            {
+                b.Property<long>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("Comment")
-                        .HasColumnType("text");
+                b.Property<string>("Comment")
+                    .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("DateTimeOffset")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTimeOffset>("DateTimeOffset")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<double>("Value")
-                        .HasColumnType("double precision");
+                b.Property<double>("Value")
+                    .HasColumnType("double precision");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Points");
-                });
+                b.ToTable("Points");
+            });
 #pragma warning restore 612, 618
-        }
     }
 }
